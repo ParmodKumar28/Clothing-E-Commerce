@@ -8,14 +8,14 @@ const path = require("path");
 const cors = require("cors");
 const { type } = require("os");
 const { error } = require("console");
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
 
 // Database connection with MongoDB
-mongoose.connect(
-  "mongodb+srv://ParmodKumar:ELVPVlZ91P6Jt4MO@chatterup.c6jztom.mongodb.net/E-Commerce?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DB_URL);
 
 // API creation
 app.get("/", (req, res, next) => {
