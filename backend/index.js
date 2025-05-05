@@ -9,6 +9,7 @@ const cors = require("cors");
 const { type } = require("os");
 const { error } = require("console");
 const dotenv = require("dotenv");
+const e = require("express");
 dotenv.config();
 
 app.use(express.json());
@@ -39,9 +40,15 @@ const upload = multer({ storage: storage });
 app.use("/images", express.static("upload/images"));
 
 app.post("/upload", upload.single("product"), (req, res) => {
+  let host;
+  if(process.env.MODE === "production"){
+    host = process.env.HOST_PROD;
+  }else{
+    host = process.env.HOST_DEV;
+  }
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`,
+    image_url: `${host}/images/${req.file.filename}`,
   });
 });
 

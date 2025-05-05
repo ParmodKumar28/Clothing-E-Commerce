@@ -6,7 +6,12 @@ import Item from '../Item/Item'
 const NewCollections = () => {
     // State's
     const [new_collection, setNew_Collection] = useState([]);
-    const API_URL = process.env.REACT_API_URL || "http://localhost:4000";
+    let API_URL;
+    if (process.env.REACT_APP_MODE === "production") {
+        API_URL = process.env.REACT_APP_API_URL_PROD;
+    } else {
+        API_URL = process.env.REACT_APP_API_URL_DEV;
+    }
 
     useEffect(() => {
         fetch(`${API_URL}/newcollections`)

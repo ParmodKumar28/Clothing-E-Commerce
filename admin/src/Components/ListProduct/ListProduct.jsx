@@ -5,7 +5,7 @@ import cross_icon from "../../assets/cross_icon.png"
 const ListProduct = () => {
 
     const [allproducts, setAllProducts] = useState([]);
-    const API_URL = process.env.REACT_API_URL || "http://localhost:4000";
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
     const fetchInfo = async () => {
         await fetch(`${API_URL}/allproducts`).then((resp) => resp.json()).then((data) => { setAllProducts(data) });
