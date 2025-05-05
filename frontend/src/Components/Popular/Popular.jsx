@@ -5,9 +5,10 @@ import Item from '../Item/Item'
 const Popular = () => {
     // State's
     const [popularProducts, setPopularProducts] = useState([]);
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
     useEffect(() => {
-        fetch("http://localhost:4000/popularinwomen")
+        fetch(`${API_URL}/popularinwomen`)
             .then((response) => response.json())
             .then((data) => setPopularProducts(data))
     }, [])
