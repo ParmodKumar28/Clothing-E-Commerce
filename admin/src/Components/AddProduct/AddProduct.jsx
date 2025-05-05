@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import "./AddProduct.css"
 import upload_area from "../../assets/upload_area.svg"
 
@@ -11,7 +11,12 @@ const AddProduct = () => {
         new_price: "",
         old_price: ""
     })
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    let API_URL;
+    if (import.meta.env.VITE_MODE === "production") {
+        API_URL = import.meta.env.VITE_API_URL_PROD;
+    } else {
+        API_URL = import.meta.env.VITE_API_URL_DEV;
+    }
 
     const imageHandler = (e) => {
         setImage(e.target.files[0]);

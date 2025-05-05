@@ -13,7 +13,11 @@ const e = require("express");
 dotenv.config();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Database connection with MongoDB
 mongoose.connect(process.env.DB_URL);
@@ -41,9 +45,9 @@ app.use("/images", express.static("upload/images"));
 
 app.post("/upload", upload.single("product"), (req, res) => {
   let host;
-  if(process.env.MODE === "production"){
+  if (process.env.MODE === "production") {
     host = process.env.HOST_PROD;
-  }else{
+  } else {
     host = process.env.HOST_DEV;
   }
   res.json({

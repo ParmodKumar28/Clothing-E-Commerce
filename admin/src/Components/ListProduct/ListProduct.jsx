@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./ListProduct.css"
 import cross_icon from "../../assets/cross_icon.png"
 
 const ListProduct = () => {
 
     const [allproducts, setAllProducts] = useState([]);
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    let API_URL;
+    if (import.meta.env.VITE_MODE === "production") {
+        API_URL = import.meta.env.VITE_API_URL_PROD;
+    } else {
+        API_URL = import.meta.env.VITE_API_URL_DEV;
+    }
 
     const fetchInfo = async () => {
         await fetch(`${API_URL}/allproducts`).then((resp) => resp.json()).then((data) => { setAllProducts(data) });
