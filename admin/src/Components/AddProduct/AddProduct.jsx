@@ -11,7 +11,7 @@ const AddProduct = () => {
         new_price: "",
         old_price: ""
     })
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    const API_URL = process.env.REACT_API_URL || "http://localhost:4000";
 
     const imageHandler = (e) => {
         setImage(e.target.files[0]);

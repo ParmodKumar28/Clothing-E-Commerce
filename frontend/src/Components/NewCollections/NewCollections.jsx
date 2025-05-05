@@ -6,7 +6,7 @@ import Item from '../Item/Item'
 const NewCollections = () => {
     // State's
     const [new_collection, setNew_Collection] = useState([]);
-    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    const API_URL = process.env.REACT_API_URL || "http://localhost:4000";
 
     useEffect(() => {
         fetch(`${API_URL}/newcollections`)
